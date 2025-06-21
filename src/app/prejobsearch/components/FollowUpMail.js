@@ -121,8 +121,9 @@ const InterviewFollowupForm = () => {
                       htmlFor="interviewerNames"
                       className="text-sm font-medium text-gray-700"
                     >
-                      Interviewer's Name(s)
+                      Interviewer&apos;s Name(s)
                     </label>
+
                     <input
                       id="interviewerNames"
                       type="text"

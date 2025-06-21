@@ -145,7 +145,7 @@ const CourseExam = ({ exam, topicName, totalTime = 30 * 60 }) => {
               </div>
               {timeRemaining === 0 && (
                 <p className="text-red-600 font-medium mb-4">
-                  Time's up! Exam automatically submitted.
+                  Time&#39;s up! Exam automatically submitted.
                 </p>
               )}
 

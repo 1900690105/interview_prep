@@ -1,53 +1,57 @@
 "use client";
-import ChatBot from "@/app/components/ChatBot";
-import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
 
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
+import ChatBot from "@/app/components/ChatBot";
+
+// Mapping page names to dynamic components
 const componentMap = {
   CommanQuestion: dynamic(() =>
     import("@/app/technical/components/CommanQuestion")
   ),
-
   GroupDiscussion: dynamic(() =>
     import("@/app/technical/components/GroupDescusion")
   ),
-
   StartInterview: dynamic(() =>
     import("@/app/technical/components/StartHumanInterview")
   ),
   AptitudeExam: dynamic(() =>
     import("@/app/technical/components/AptitudeExam")
   ),
-
   InterviewFollow: dynamic(() =>
     import("@/app/technical/components/InterviewFollow")
   ),
-
   CompanyResearch: dynamic(() =>
     import("@/app/technical/components/CompanyResearch")
   ),
   FreelancingGuideUI: dynamic(() =>
     import("@/app/technical/components/Freelancing")
   ),
-
   CompanyProblem: dynamic(() =>
     import("@/app/technical/components/CompanyProblem")
   ),
   CodingRound: dynamic(() => import("@/app/technical/components/CodingRound")),
 };
 
-const ParamsPage = () => {
+const DefaultComponent = dynamic(() => import("@/app/components/Instruction"));
+
+// Separate client-only component to use `useSearchParams`
+function DynamicContent() {
   const searchParams = useSearchParams();
   const page_name = searchParams.get("page");
-  const Component =
-    componentMap[page_name] ||
-    dynamic(() => import("@/app/components/Instruction"));
+  const Component = componentMap[page_name] || DefaultComponent;
+
+  return <Component />;
+}
+
+export default function ParamsPage() {
   return (
     <>
-      <Component />
+      <Suspense fallback={<div className="p-6 text-center">Loading...</div>}>
+        <DynamicContent />
+      </Suspense>
       <ChatBot />
     </>
   );
-};
-
-export default ParamsPage;
+}

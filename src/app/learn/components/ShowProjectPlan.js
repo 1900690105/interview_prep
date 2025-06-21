@@ -25,7 +25,7 @@ const Project_plan = ({ setPlanStatus, setCheck }) => {
       alert("Project Completed");
     }
     console.log(plan);
-  });
+  }, [setPlan]);
 
   return (
     <div

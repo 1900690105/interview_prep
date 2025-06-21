@@ -41,8 +41,8 @@ export default function ATSFriendlyResume() {
             Bachelor of Science in Computer Science | Graduated: May 2020
           </p>
           <p className="text-gray-600 italic">
-            Thesis: "Implementing Machine Learning Algorithms for Predictive
-            Maintenance in IoT Devices"
+            Thesis: &apos;Implementing Machine Learning Algorithms for
+            Predictive Maintenance in IoT Devices&apos;
           </p>
         </div>
       </section>

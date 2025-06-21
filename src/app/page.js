@@ -8,6 +8,7 @@ import PowerCareerPath from "./components/PowerCareerPath";
 import HeroSection from "./home/components/HeroSection";
 import Footer from "./home/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [email, setEmail] = useState("");
@@ -102,7 +103,7 @@ export default function Home() {
                     aria-label={`Testimonial from ${story.name}`}
                   >
                     <div className="flex items-start">
-                      <img
+                      <Image
                         src={story.image}
                         alt={`${story.name} - ${story.role}`}
                         className="w-12 h-12 rounded-full mr-4 object-cover"
@@ -115,7 +116,7 @@ export default function Home() {
                           className="text-gray-600 mb-4"
                           itemProp="reviewBody"
                         >
-                          "{story.quote}"
+                          {story.quote}
                         </blockquote>
                         <footer>
                           <h4
@@ -152,7 +153,7 @@ export default function Home() {
                     Ready to Start Your Career Journey?
                   </h2>
                   <p className="mt-3 text-xl text-indigo-100">
-                    Join thousands of students who've successfully launched
+                    Join thousands of students who&apos;ve successfully launched
                     their careers with our platform.
                   </p>
                 </div>
@@ -218,8 +219,9 @@ export default function Home() {
                   aria-describedby="email-help"
                 />
                 <p id="email-help" className="sr-only">
-                  We'll send you career tips and job opportunities
+                  We&apos;ll send you career tips and job opportunities
                 </p>
+
                 <button
                   type="submit"
                   className="bg-indigo-600 text-white px-6 py-3 rounded-md hover:bg-indigo-700 transition-colors duration-200 font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -232,7 +234,6 @@ export default function Home() {
           </section>
         </main>
       </div>
-
       {/* Footer landmark */}
       <footer role="contentinfo">
         <Footer />

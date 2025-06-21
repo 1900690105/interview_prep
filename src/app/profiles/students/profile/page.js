@@ -182,7 +182,7 @@ const StudentDashboard = () => {
               <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 rounded-xl">
                 <h2 className="text-2xl font-bold mb-2">Welcome back, Alex!</h2>
                 <p className="text-blue-100">
-                  Ready to ace your next interview? Let's continue your
+                  Ready to ace your next interview? Let&apos;s continue your
                   preparation journey.
                 </p>
                 <div className="mt-4 flex items-center space-x-4">

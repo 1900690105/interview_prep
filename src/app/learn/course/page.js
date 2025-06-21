@@ -22,7 +22,7 @@ const CreateCoursePage = () => {
     if (content) {
       setLocalStorageContent(JSON.stringify(content));
     }
-  }, []);
+  }, [content, localStorageContent]);
 
   const handleNext = () => {
     setActiveStep((prev) => Math.min(prev + 1, 3));

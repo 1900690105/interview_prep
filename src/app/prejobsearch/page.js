@@ -1,10 +1,9 @@
 "use client";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
-import ChatBot from "@/app/components/ChatBot";
 import { Suspense } from "react";
+import ChatBot from "@/app/components/ChatBot";
 
-// Map of dynamic components
 const componentMap = {
   Agency: dynamic(() => import("@/app/prejobsearch/components/Agency")),
   GhostJobs: dynamic(() => import("@/app/prejobsearch/components/GhostJobs")),
@@ -25,11 +24,15 @@ const componentMap = {
 
 const DefaultComponent = dynamic(() => import("@/app/components/Instruction"));
 
-const ParamsPage = () => {
+function DynamicContent() {
   const searchParams = useSearchParams();
   const page_name = searchParams.get("page");
   const Component = componentMap[page_name] || DefaultComponent;
 
+  return <Component />;
+}
+
+export default function ParamsPage() {
   return (
     <main
       role="main"
@@ -37,15 +40,12 @@ const ParamsPage = () => {
       aria-live="polite"
       aria-label="Main content"
     >
-      {/* Suspense fallback for loading accessibility */}
       <Suspense
         fallback={<p className="text-center py-10">Loading content...</p>}
       >
-        <Component />
+        <DynamicContent />
       </Suspense>
       <ChatBot />
     </main>
   );
-};
-
-export default ParamsPage;
+}

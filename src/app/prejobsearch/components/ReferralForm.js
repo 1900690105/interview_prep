@@ -17,7 +17,7 @@ const JobApplicationForm = ({ setMessage, setData }) => {
       setData(JSON.parse(storedData));
       setMessage(true);
     }
-  }, []);
+  }, [setData, setMessage]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -132,7 +132,7 @@ The tone should be respectful, professional, and enthusiastic. Tailor the messag
             htmlFor="referrerName"
             className="block text-gray-700 font-medium mb-2"
           >
-            Referrer's Name
+            Referrer&apos;s Name
           </label>
           <input
             type="text"

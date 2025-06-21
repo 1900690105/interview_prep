@@ -24,7 +24,7 @@ const StudyPlan = ({ data }) => {
     if (!data) {
       alert("something went wrong please try again!..");
     }
-  }, []);
+  }, [data]);
 
   const toggleDayCompletion = (dayNumber) => {
     const newCompletedDays = new Set(completedDays);
@@ -220,7 +220,7 @@ const StudyPlan = ({ data }) => {
                                 }}
                                 aria-label={`Start task: ${task}`}
                               >
-                                Let's Do It
+                                Let&#39;s Do It
                               </Button>
                             </li>
                           ))}

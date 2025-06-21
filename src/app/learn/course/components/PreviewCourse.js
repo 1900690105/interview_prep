@@ -30,65 +30,10 @@ function PreviewCourse({ activeStep, handleBack, content, setContent }) {
         setDataLoading(false);
         return;
       }
-
-      // try {
-      //   setDataLoading(true);
-      //   const docRef = doc(db, "courses", courseId);
-      //   const docSnap = await getDoc(docRef);
-
-      //   if (docSnap.exists()) {
-      //     const data = docSnap.data();
-      //     console.log("Fetched data:", data); // Debug log
-      //     console.log("Chapters type:", typeof data.chapters);
-      //     console.log("Chapters value:", data.chapters);
-      //     console.log("Is array?", Array.isArray(data.chapters));
-
-      //     // Handle different chapter data formats
-      //     let chapters = [];
-      //     if (Array.isArray(data.chapters)) {
-      //       chapters = data.chapters;
-      //     } else if (typeof data.chapters === "string") {
-      //       // If chapters is a string number, create dummy chapters
-      //       const chapterCount = parseInt(data.chapters) || 0;
-      //       chapters = Array.from({ length: chapterCount }, (_, index) => ({
-      //         chapterName: `Chapter ${index + 1}`,
-      //         about: `This is chapter ${index + 1} of the course`,
-      //         duration: "30 min",
-      //       }));
-      //     }
-
-      //     const finalContent = {
-      //       ...data,
-      //       chapters: chapters,
-      //     };
-
-      //     console.log("Final content after processing:", finalContent);
-      //     console.log("Final chapters:", finalContent.chapters);
-      //     console.log("Final chapters length:", finalContent.chapters.length);
-
-      //     setContent(finalContent);
-      //   } else {
-      //     console.error("No such document!");
-      //     setContent({
-      //       chapters: [],
-      //       courseName: "",
-      //       description: "",
-      //     });
-      //   }
-      // } catch (error) {
-      //   console.error("Error fetching course data:", error);
-      //   setContent({
-      //     chapters: [],
-      //     courseName: "",
-      //     description: "",
-      //   });
-      // } finally {
-      //   setDataLoading(false);
-      // }
     };
 
     fetchCourseData();
-  }, []); // Empty dependency array to run only once
+  }, [setContent]); // Empty dependency array to run only once
 
   const StartChapter = async () => {
     const topicName = localStorage.getItem("topicName");

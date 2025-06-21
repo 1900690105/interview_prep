@@ -76,7 +76,7 @@ export default function CodingRound() {
                     onClick={() => StartInterview()}
                     className="flex items-center gap-2 mt-6 px-6 py-3 rounded-lg bg-white text-indigo-600 font-semibold shadow-lg hover:bg-indigo-50 transition-all duration-300 ease-in-out"
                   >
-                    Let's Practice <ArrowRight className="w-5 h-5" />
+                    Let&apos;s Practice <ArrowRight className="w-5 h-5" />
                   </Button>
                 </div>
               </div>

@@ -1,12 +1,12 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useSearchParams } from "next/navigation";
 import Header from "../components/Header";
 import ChatBot from "@/app/components/ChatBot";
-import { useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useMemo } from "react";
 
-// Dynamic component imports
+// Dynamic component map
 const componentMap = {
   DepartmentJobRoles: dynamic(() =>
     import("@/app/careerplanning/components/DepartmentJobs")
@@ -28,36 +28,39 @@ const componentMap = {
   ),
 };
 
-// Main functional component
-const CareerPlanning = () => {
+const DefaultComponent = dynamic(() => import("@/app/components/Instruction"));
+
+// Extracted dynamic content into a separate suspense-wrapped component
+function DynamicContent() {
   const searchParams = useSearchParams();
   const page_name = searchParams.get("page");
 
-  // Memoize component to avoid unnecessary dynamic evaluation
   const Component = useMemo(() => {
-    return (
-      componentMap[page_name] ||
-      dynamic(() => import("@/app/components/Instruction"))
-    );
+    return componentMap[page_name] || DefaultComponent;
   }, [page_name]);
 
+  return <Component />;
+}
+
+const CareerPlanning = () => {
   return (
     <>
-      {/* Semantic header for accessibility */}
       <header role="banner">
         <Header />
       </header>
 
-      {/* Main content container */}
       <main
         role="main"
         aria-label="Career planning content"
         className="min-h-screen bg-gray-50"
       >
-        <Component />
+        <Suspense
+          fallback={<div className="text-center py-10">Loading...</div>}
+        >
+          <DynamicContent />
+        </Suspense>
       </main>
 
-      {/* Chat assistant at page end */}
       <footer role="contentinfo" aria-label="Chat assistant">
         <ChatBot />
       </footer>

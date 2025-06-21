@@ -17,7 +17,7 @@ function McqExam({ topicName }) {
     if (localStorageContent) {
       setContent(JSON.parse(localStorageContent));
     }
-  }, []);
+  }, [localStorageContent]);
 
   useEffect(() => {
     const exam = localStorage.getItem("combinedExamDate");
@@ -89,8 +89,8 @@ function McqExam({ topicName }) {
               </CardHeader>
               <CardContent className="space-y-4">
                 <p className="text-lg" aria-live="polite">
-                  Have you completed the exam? Let's give it a try — just click
-                  the Start Exam button.
+                  Have you completed the exam? Let&#39;s give it a try — just
+                  click the Start Exam button.
                 </p>
               </CardContent>
             </Card>

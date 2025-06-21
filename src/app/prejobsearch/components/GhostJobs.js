@@ -46,7 +46,7 @@ function GhostJobs() {
                 id="ghost-title"
                 className="text-2xl md:text-3xl lg:text-4xl font-bold"
               >
-                GHOST JOBS are the reason you can't find a job.
+                GHOST JOBS are the reason you can&apos;t find a job.
               </CardTitle>
               <p className="text-blue-100 mt-2">
                 A Comprehensive Guide for Job Seekers

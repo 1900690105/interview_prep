@@ -77,7 +77,7 @@ export default function Jobs() {
     }
   }, []);
 
-  const fetchJobs = async () => {
+  const fetchJobs = useCallback(async () => {
     setIsLoading(true);
     try {
       const response = await fetch(`/api/jobs?q=${query}&location=${state}`);
@@ -98,11 +98,11 @@ export default function Jobs() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [query, state, day]); // ✅ Add dependencies here
 
   useEffect(() => {
     fetchJobs();
-  }, []);
+  }, [fetchJobs]);
 
   const handleSearch = (e) => {
     e.preventDefault();

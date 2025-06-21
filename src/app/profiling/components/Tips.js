@@ -177,7 +177,7 @@ function Tips() {
                         Example: {item.example.title}
                       </h3>
                       <p className="text-gray-700 italic">
-                        "{item.example.text}"
+                        &apos;{item.example.text}&apos;
                       </p>
                     </div>
                   </div>

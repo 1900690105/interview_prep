@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { Card, CardHeader } from "@/components/ui/card";
 import {
   BookOpen,
@@ -147,13 +147,16 @@ const CourseInterface = () => {
     return () => document.removeEventListener("keydown", handleTrapFocus);
   }, [isChaptersOpen]);
 
-  const sidebarItems = [
-    { icon: BookOpen, label: "Notes" },
-    { icon: MessageSquare, label: "Flash Cards" },
-    { icon: Trophy, label: "Quiz" },
-    { icon: Smartphone, label: "Teach to Other" },
-    { icon: Play, label: "Questions/Answers" },
-  ];
+  const sidebarItems = useMemo(
+    () => [
+      { icon: BookOpen, label: "Notes" },
+      { icon: MessageSquare, label: "Flash Cards" },
+      { icon: Trophy, label: "Quiz" },
+      { icon: Smartphone, label: "Teach to Other" },
+      { icon: Play, label: "Questions/Answers" },
+    ],
+    []
+  );
 
   // Live region state for announcements
   const [liveMessage, setLiveMessage] = useState("");
@@ -163,7 +166,7 @@ const CourseInterface = () => {
     if (sidebarItems[active]) {
       setLiveMessage(`Selected tab: ${sidebarItems[active].label}`);
     }
-  }, [active]);
+  }, [active, sidebarItems]);
 
   return (
     <div className="min-h-screen bg-gray-50">

@@ -530,7 +530,7 @@ const CompanyAuthPortal = () => {
                           onChange={handleInputChange}
                           className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
                           placeholder="+1 (555) 000-0000"
-                          aria-description="Enter your phone number, optional field"
+                          aria-describedby="phone-description"
                         />
                       </div>
                     </div>
@@ -606,7 +606,7 @@ const CompanyAuthPortal = () => {
                           onChange={handleInputChange}
                           className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 focus:bg-white"
                           placeholder="company.com"
-                          aria-description="Enter your company website URL, optional field"
+                          aria-describedby="Enter your company website URL, optional field"
                         />
                       </div>
                     </div>
@@ -726,7 +726,7 @@ const CompanyAuthPortal = () => {
                         placeholder="Confirm your password"
                         required
                         aria-required="true"
-                        aria-description="Re-enter your password for confirmation"
+                        aria-describedby="Re-enter your password for confirmation"
                       />
                       <button
                         type="button"

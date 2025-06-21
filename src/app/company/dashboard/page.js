@@ -24,6 +24,7 @@ import {
   Briefcase,
 } from "lucide-react";
 import SideBar from "../components/SideBar";
+import Image from "next/image";
 
 export default function JobPrepDashboard() {
   const [activeTab, setActiveTab] = useState("overview");
@@ -143,11 +144,11 @@ export default function JobPrepDashboard() {
               </button>
 
               <div className="flex items-center space-x-2">
-                <img
+                {/* <Image
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face"
                   alt="Profile"
                   className="h-8 w-8 rounded-full"
-                />
+                /> */}
                 <span className="text-sm font-medium text-gray-700">
                   Alex Johnson
                 </span>
@@ -361,7 +362,7 @@ export default function JobPrepDashboard() {
                   <div>
                     <h3 className="font-semibold">Week Champion!</h3>
                     <p className="text-sm text-purple-100">
-                      You've completed 5 coding challenges this week
+                      you&apos;ve completed 5 coding challenges this week
                     </p>
                   </div>
                 </div>

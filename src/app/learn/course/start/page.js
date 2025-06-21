@@ -122,7 +122,7 @@ const CoursePage = () => {
     if (courseId) {
       fetchCourseData();
     }
-  }, []);
+  }, [courseId]);
 
   const {
     error,
@@ -152,7 +152,7 @@ const CoursePage = () => {
         localStorage.setItem("activeChapter", index);
       }
     }
-  }, [restart, complete]);
+  }, [restart, complete, activeChapter, combinedChapterData.length, takeExam]);
 
   useEffect(() => {
     const expandContent = localStorage.getItem("expandContent");
@@ -211,30 +211,50 @@ const CoursePage = () => {
     setCheat(false), setInterview(false), setView(false), setEnggaging(false);
   }, []);
 
-  const takeExam = async (chapterName) => {
-    setLoading((prevState) => ({
-      ...prevState,
-      exam: true,
-    }));
-    const prompt = `generate 10 mcq for exam on chapter ${chapterName} of course ${topicName}, include question, answer, options, explanation. In JSON format.`;
-    try {
-      const result = await AiChapterExam.sendMessage(prompt);
-      const responseText = await result.response.text();
-      const parsedResult = JSON.parse(responseText);
-      setChapterExam(parsedResult);
-      localStorage.setItem("chapterExam", JSON.stringify(parsedResult));
-      // console.log(parsedResult);
-      setExamData(true);
-    } catch (error) {
-      console.error(error);
-    } finally {
+  const takeExam = useCallback(
+    async (chapterName) => {
       setLoading((prevState) => ({
         ...prevState,
-        exam: false,
+        exam: true,
       }));
-      setRestart(false);
+      const prompt = `generate 10 mcq for exam on chapter ${chapterName} of course ${topicName}, include question, answer, options, explanation. In JSON format.`;
+      try {
+        const result = await AiChapterExam.sendMessage(prompt);
+        const responseText = await result.response.text();
+        const parsedResult = JSON.parse(responseText);
+        setChapterExam(parsedResult);
+        localStorage.setItem("chapterExam", JSON.stringify(parsedResult));
+        setExamData(true);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading((prevState) => ({
+          ...prevState,
+          exam: false,
+        }));
+        setRestart(false);
+      }
+    },
+    [topicName]
+  ); // Add topicName as dependency since it's used inside the function
+
+  useEffect(() => {
+    if (restart) {
+      takeExam();
     }
-  };
+    if (complete) {
+      if (combinedChapterData.length - 1 === activeChapter) {
+        alert("course completed! Let's Take Final Exam!");
+        setExam(0);
+        setActiveChapter("");
+      } else {
+        setExamData(false);
+        const index = activeChapter + 1;
+        setActiveChapter(index);
+        localStorage.setItem("activeChapter", index);
+      }
+    }
+  }, [restart, complete, activeChapter, combinedChapterData.length, takeExam]);
 
   const handleExpandChapter = async (topicName, index) => {
     if (index !== expandindex) {
@@ -689,7 +709,7 @@ const CoursePage = () => {
                               setHeading(section.heading);
                             }}
                           >
-                            Let's प्रारम्भ (Start) 🚀
+                            Let&#39;s प्रारम्भ (Start) 🚀
                           </Button>
                         </div>
                       </div>

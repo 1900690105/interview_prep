@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 const QuestionLoader = () => {
   const [selectedDept, setSelectedDept] = useState("CS");
@@ -14,86 +14,91 @@ const QuestionLoader = () => {
     ME: "Mechanical Engineering",
   };
 
-  const items = {
-    CS: [
+  const items = useMemo(
+    () => [
       {
-        question: "What is React Fiber?",
-        answer: "A rendering engine.",
-      },
-      {
-        question: "What is the purpose of `useMemo`?",
-        answer: "Memoize values.",
-      },
-      {
-        question: "What does Concurrent Mode do?",
-        answer: "Improves responsiveness.",
-      },
-      {
-        question: "What is an HOC in React?",
-        answer: "A component wrapper.",
-      },
-      {
-        question: "Why use `useReducer`?",
-        answer: "Handles complex state.",
+        CS: [
+          {
+            question: "What is React Fiber?",
+            answer: "A rendering engine.",
+          },
+          {
+            question: "What is the purpose of `useMemo`?",
+            answer: "Memoize values.",
+          },
+          {
+            question: "What does Concurrent Mode do?",
+            answer: "Improves responsiveness.",
+          },
+          {
+            question: "What is an HOC in React?",
+            answer: "A component wrapper.",
+          },
+          {
+            question: "Why use `useReducer`?",
+            answer: "Handles complex state.",
+          },
+        ],
+        CE: [
+          {
+            question: "Main component of cement?",
+            answer: "Limestone",
+          },
+          {
+            question: "Unit of force?",
+            answer: "Newton",
+          },
+          {
+            question: "Basic surveying tool?",
+            answer: "Theodolite",
+          },
+        ],
+        EE: [
+          {
+            question: "Unit of current?",
+            answer: "Ampere",
+          },
+          {
+            question: "Best conductor?",
+            answer: "Silver",
+          },
+          {
+            question: "AC frequency in India?",
+            answer: "50 Hz",
+          },
+        ],
+        EXTC: [
+          {
+            question: "Full form GSM?",
+            answer: "Global System for Mobile",
+          },
+          {
+            question: "Unit of frequency?",
+            answer: "Hertz",
+          },
+          {
+            question: "Common WiFi frequency?",
+            answer: "2.4 GHz",
+          },
+        ],
+        ME: [
+          {
+            question: "Unit of pressure?",
+            answer: "Pascal",
+          },
+          {
+            question: "Basic lathe operation?",
+            answer: "Turning",
+          },
+          {
+            question: "SI unit of temperature?",
+            answer: "Kelvin",
+          },
+        ],
       },
     ],
-    CE: [
-      {
-        question: "Main component of cement?",
-        answer: "Limestone",
-      },
-      {
-        question: "Unit of force?",
-        answer: "Newton",
-      },
-      {
-        question: "Basic surveying tool?",
-        answer: "Theodolite",
-      },
-    ],
-    EE: [
-      {
-        question: "Unit of current?",
-        answer: "Ampere",
-      },
-      {
-        question: "Best conductor?",
-        answer: "Silver",
-      },
-      {
-        question: "AC frequency in India?",
-        answer: "50 Hz",
-      },
-    ],
-    EXTC: [
-      {
-        question: "Full form GSM?",
-        answer: "Global System for Mobile",
-      },
-      {
-        question: "Unit of frequency?",
-        answer: "Hertz",
-      },
-      {
-        question: "Common WiFi frequency?",
-        answer: "2.4 GHz",
-      },
-    ],
-    ME: [
-      {
-        question: "Unit of pressure?",
-        answer: "Pascal",
-      },
-      {
-        question: "Basic lathe operation?",
-        answer: "Turning",
-      },
-      {
-        question: "SI unit of temperature?",
-        answer: "Kelvin",
-      },
-    ],
-  };
+    []
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -102,12 +107,12 @@ const QuestionLoader = () => {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [selectedDept]);
+  }, [selectedDept, items]);
 
   return (
     <>
       <div className="flex justify-center ">
-        <img
+        <Image
           src={"/reading.gif"}
           alt="loader"
           width={100}

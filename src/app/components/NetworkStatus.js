@@ -92,7 +92,7 @@ export default function NetworkStatus() {
           </div>
           <div>
             <p className="font-semibold text-sm">Connection Restored</p>
-            <p className="text-xs opacity-90">You're back online!</p>
+            <p className="text-xs opacity-90">you&apos;re back online!</p>
           </div>
         </div>
       )}

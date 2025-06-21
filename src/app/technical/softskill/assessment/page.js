@@ -1,6 +1,7 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
-import { Mic, StopCircle, Camera, CameraOff, AlertCircle } from "lucide-react";
+
+import React, { useState, useEffect } from "react";
+import { Mic, StopCircle, AlertCircle } from "lucide-react";
 
 import Que from "./components/Que";
 import { Button } from "@/components/ui/button";
@@ -10,15 +11,13 @@ import useSpeechToText from "react-hook-speech-to-text";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Textarea } from "@/components/ui/textarea";
-
 import FeedbackReport from "./components/FeedbackReport";
 import { AiSoftSkillReport } from "../../../../../config/AllAiModels";
 import WebCam from "@/app/components/WebCam";
 import LoadingDialog from "@/app/components/LoadingDialog";
 
-function InterviewPractice() {
+function InterviewPracticeComponent() {
   const [questions, setQuestions] = useState([]);
-  const [isCameraOn, setIsCameraOn] = useState(true);
   const [userAnswer, setUserAnswer] = useState("");
   const [permissionsGranted, setPermissionsGranted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -26,10 +25,7 @@ function InterviewPractice() {
   const [check, setCheck] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const videoRef = useRef(null);
   const {
-    error,
-    interimResult,
     isRecording,
     results,
     startSpeechToText,
@@ -40,55 +36,50 @@ function InterviewPractice() {
     useLegacyResults: false,
   });
 
-  const checkPermissions = async () => {
-    try {
-      await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
-      setPermissionsGranted(true);
-      return true;
-    } catch (error) {
-      toast.error("Please enable camera and microphone access");
-      setPermissionsGranted(false);
-      return false;
-    }
-  };
-
   useEffect(() => {
-    checkPermissions();
-    const storedQuestions = localStorage.getItem("softSkillQuestions");
-    if (storedQuestions) {
-      setQuestions(JSON.parse(storedQuestions));
-    } else {
-      toast.error("Questions not found");
+    if (typeof window !== "undefined") {
+      const storedQuestions = localStorage.getItem("softSkillQuestions");
+      if (storedQuestions) {
+        setQuestions(JSON.parse(storedQuestions));
+      } else {
+        toast.error("Questions not found");
+      }
+
+      navigator.mediaDevices
+        .getUserMedia({ audio: true, video: true })
+        .then(() => setPermissionsGranted(true))
+        .catch(() => {
+          toast.error("Please enable camera and microphone access");
+          setPermissionsGranted(false);
+        });
     }
   }, []);
 
   useEffect(() => {
     if (results.length > 0) {
-      const newAnswer = results.map((result) => result.transcript).join(" ");
-      setUserAnswer((prevAnswer) => prevAnswer + " " + newAnswer);
+      const newAnswer = results.map((r) => r.transcript).join(" ");
+      setUserAnswer((prev) => prev + " " + newAnswer);
       setResults([]);
     }
   }, [results, setResults]);
 
-  const toggleCamera = () => {
-    setIsCameraOn(!isCameraOn);
-  };
-
   const submitAnswer = async () => {
+    if (!questions[currentQuestionIndex]) return;
     setLoading(true);
+
     const prompt = `Evaluate the student's ${questions[currentQuestionIndex].skill} skills level based on their response to the following question:
-    Question: ${questions[currentQuestionIndex].question}.
-    Student's Answer: ${userAnswer}.include skill,skill level,Evaluation Criteria,description,feedback,strengths,weak area,preparation,resource,Assessment and Rating,Areas for Improvement,Suggestions for Further Practice,Conclusion.in json formate.`;
-    // alert(prompt);
+Question: ${questions[currentQuestionIndex].question}.
+Student's Answer: ${userAnswer}.
+Include skill, skill level, Evaluation Criteria, description, feedback, strengths, weak area, preparation, resource, Assessment and Rating, Areas for Improvement, Suggestions for Further Practice, Conclusion. In JSON format.`;
+
     try {
       const result = await AiSoftSkillReport.sendMessage(prompt);
-      const responseText = await result.response.text();
-      console.log(responseText);
-      setFeedback(JSON.parse(responseText));
-      setLoading(false);
+      const text = await result.response.text();
+      setFeedback(JSON.parse(text));
       setCheck(true);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong while generating feedback.");
     } finally {
       setLoading(false);
     }
@@ -96,26 +87,17 @@ function InterviewPractice() {
 
   return (
     <>
-      <header className="bg-blue-600 py-4" role="banner">
+      <header className="bg-blue-600 py-4">
         <h1 className="text-3xl font-bold text-white m-2">
           Soft Skills Assessment
         </h1>
       </header>
 
-      <main
-        className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100"
-        role="main"
-      >
+      <main className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
         <div className="container mx-auto px-4 py-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Questions Section */}
-            <section
-              aria-labelledby="question-section-title"
-              className="bg-white rounded-lg shadow-lg p-6"
-            >
-              <h2 id="question-section-title" className="sr-only">
-                Questions
-              </h2>
+            {/* Question Section */}
+            <section className="bg-white rounded-lg shadow-lg p-6">
               <Que
                 questions={questions}
                 currentQuestionIndex={currentQuestionIndex}
@@ -126,15 +108,7 @@ function InterviewPractice() {
             </section>
 
             {/* Interview Section */}
-            <section
-              aria-labelledby="interview-section-title"
-              className="space-y-6"
-            >
-              <h2 id="interview-section-title" className="sr-only">
-                Interview Interaction
-              </h2>
-
-              {/* Camera Section */}
+            <section className="space-y-6">
               <Card className="bg-gray-900 shadow-xl">
                 <CardContent className="p-2">
                   <div className="relative flex justify-center">
@@ -143,27 +117,22 @@ function InterviewPractice() {
                 </CardContent>
               </Card>
 
-              {/* Controls Section */}
               <div className="flex flex-col items-center space-y-4">
                 <Button
                   className="w-full max-w-md bg-blue-500 hover:bg-blue-600"
                   variant={isRecording ? "destructive" : "default"}
                   onClick={isRecording ? stopSpeechToText : startSpeechToText}
-                  disabled={!permissionsGranted || userAnswer}
-                  aria-pressed={isRecording}
-                  aria-label={
-                    isRecording ? "Stop recording" : "Start recording"
-                  }
+                  disabled={!permissionsGranted || !!userAnswer}
                 >
                   <div className="flex items-center space-x-2">
                     {isRecording ? (
                       <>
-                        <StopCircle className="h-5 w-5" aria-hidden="true" />
+                        <StopCircle className="h-5 w-5" />
                         <span>Stop Recording</span>
                       </>
                     ) : (
                       <>
-                        <Mic className="h-5 w-5" aria-hidden="true" />
+                        <Mic className="h-5 w-5" />
                         <span>Start Recording</span>
                       </>
                     )}
@@ -171,12 +140,8 @@ function InterviewPractice() {
                 </Button>
 
                 {!permissionsGranted && (
-                  <Alert
-                    variant="destructive"
-                    role="alert"
-                    aria-live="assertive"
-                  >
-                    <AlertCircle className="h-4 w-4" aria-hidden="true" />
+                  <Alert variant="destructive" role="alert">
+                    <AlertCircle className="h-4 w-4" />
                     <AlertDescription>
                       Please enable camera and microphone access to continue
                     </AlertDescription>
@@ -184,31 +149,20 @@ function InterviewPractice() {
                 )}
               </div>
 
-              {/* Answer Display Section */}
-              <Card className="bg-white" aria-labelledby="answer-section">
+              {/* Answer Box */}
+              <Card>
                 <CardContent className="p-2">
-                  <label
-                    htmlFor="userAnswer"
-                    id="answer-section"
-                    className="sr-only"
-                  >
-                    Answer text area
-                  </label>
                   <Textarea
-                    id="userAnswer"
                     value={userAnswer}
                     onChange={(e) => setUserAnswer(e.target.value)}
-                    placeholder="Your answer will appear here as you speak or you can type it yourself..."
+                    placeholder="Your answer will appear here as you speak or type..."
                     className="w-full h-32"
-                    aria-label="Your spoken or typed answer"
                   />
                   <div className="flex justify-end mt-2">
                     <Button
                       onClick={submitAnswer}
                       className="bg-blue-500 hover:bg-blue-600"
                       disabled={!userAnswer}
-                      aria-disabled={!userAnswer}
-                      aria-label="Submit your answer"
                     >
                       Submit Answer
                     </Button>
@@ -220,24 +174,11 @@ function InterviewPractice() {
           </div>
         </div>
 
-        {/* Toast messages (live region handled internally) */}
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        />
+        <ToastContainer position="top-right" autoClose={5000} />
       </main>
 
-      {/* Feedback Section */}
       {check && (
-        <section aria-label="Feedback report">
+        <section>
           <FeedbackReport feedback={feedback} />
         </section>
       )}
@@ -245,4 +186,4 @@ function InterviewPractice() {
   );
 }
 
-export default InterviewPractice;
+export default InterviewPracticeComponent;

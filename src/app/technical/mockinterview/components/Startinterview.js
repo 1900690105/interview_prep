@@ -196,7 +196,7 @@ const MockInterview = ({ questions, setOk }) => {
       window.speechSynthesis.cancel();
       if (isItRecording) stopSpeechToText();
     };
-  }, []);
+  }, [isItRecording, stopSpeechToText]);
 
   const myvideoRef = useRef(null);
 

@@ -45,7 +45,7 @@ function Precourse({ pre, inputValue }) {
             Things to know before {inputValue} Preparation
           </h1>
           <p className="text-gray-600">
-            Ensure you're ready for your {inputValue} journey
+            Ensure you&apos;re ready for your {inputValue} journey
           </p>
         </header>
 

@@ -45,7 +45,7 @@ export default function Resume6() {
                 Relevant Coursework: Software Engineering, Machine Learning,
                 Data Structures, Web Development
               </li>
-              <li>Dean's List: Fall 2022, Spring 2023</li>
+              <li>Dean&apos;s List: Fall 2022, Spring 2023</li>
             </ul>
           </div>
         </div>
@@ -136,8 +136,8 @@ export default function Resume6() {
                 for customer service automation.
               </li>
               <li>
-                Integrated the chatbot with a company's CRM system to provide
-                real-time support.
+                Integrated the chatbot with a company&apos;s CRM system to
+                provide real-time support.
               </li>
               <li>
                 Improved customer satisfaction by reducing response time by 40%.

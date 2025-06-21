@@ -6,13 +6,13 @@ import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import bcrypt from "bcryptjs";
-import VerifyOTP from "../components/verifyOtp";
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { db } from "@/lib/firebaseConfig";
 import Login from "../components/Glogin";
+import VerifyOTP from "../components/VerifyOtp";
 
 const validationSchema = Yup.object().shape({
   username: Yup.string()
@@ -50,7 +50,7 @@ const SignUpForm = () => {
     if (token) {
       router.push("/");
     }
-  }, []);
+  }, [router]);
 
   const checkUserExists = async (email, phone) => {
     const usersRef = collection(db, "users");

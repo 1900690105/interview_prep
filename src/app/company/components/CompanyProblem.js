@@ -687,7 +687,7 @@ function CompanyProblem() {
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       value={newProblem.deadline}
                       onChange={handleChange}
-                      aria-description="Enter the submission deadline for the problem"
+                      aria-describedby="Enter the submission deadline for the problem"
                     />
                   </div>
 
@@ -711,7 +711,7 @@ function CompanyProblem() {
                       value={newProblem.description}
                       onChange={handleChange}
                       placeholder="Provide a detailed description of the problem"
-                      aria-description="Detailed explanation of the problem statement and requirements"
+                      aria-describedby="Detailed explanation of the problem statement and requirements"
                     ></textarea>
                   </div>
 

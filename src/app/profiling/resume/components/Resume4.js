@@ -99,7 +99,7 @@ const Resume4 = () => {
             Tech University | Expected Graduation: May 2025
           </p>
           <p className="text-gray-700">
-            GPA: 3.9/4.0 | Dean's List: All Semesters
+            GPA: 3.9/4.0 | Dean&apos;s List: All Semesters
           </p>
           <p className="text-gray-700">
             Relevant coursework: Artificial Intelligence, Data Structures,

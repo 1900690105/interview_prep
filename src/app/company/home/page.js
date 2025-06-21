@@ -15,6 +15,7 @@ import {
   Building,
   GraduationCap,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function CompaniesHomePage() {
   const [email, setEmail] = useState("");
@@ -60,7 +61,7 @@ export default function CompaniesHomePage() {
             </div>
           </div>
           <div className="lg:w-1/2 mt-10 lg:mt-0">
-            <img
+            <Image
               className="w-full rounded-lg shadow-xl"
               src="/hiring.png"
               alt="Hiring platform illustration"
@@ -186,8 +187,8 @@ export default function CompaniesHomePage() {
                   Post your opportunities
                 </h3>
                 <p className="mt-2 text-base text-gray-500">
-                  Specify the roles, skills, and qualifications you're looking
-                  for.
+                  Specify the roles, skills, and qualifications you&apos;re
+                  looking for.
                 </p>
               </div>
 
@@ -250,10 +251,11 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "TalentBridge helped us find exceptional student developers who
-                brought fresh perspectives to our projects. The quality of
-                candidates exceeded our expectations."
+                &quot;TalentBridge helped us find exceptional student developers
+                who brought fresh perspectives to our projects. The quality of
+                candidates exceeded our expectations.&quot;
               </p>
+
               <p className="mt-4 font-medium">— Sarah Johnson, HR Director</p>
             </div>
 
@@ -276,10 +278,11 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "As a fast-growing startup, we needed talent quickly. The
-                platform's matching algorithm connected us with perfect-fit
-                interns who hit the ground running."
+                &quot;As a fast-growing startup, we needed talent quickly. The
+                platform&apos;s matching algorithm connected us with perfect-fit
+                interns who hit the ground running.&quot;
               </p>
+
               <p className="mt-4 font-medium">— Michael Chen, Founder</p>
             </div>
 
@@ -302,10 +305,11 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "The pre-vetting process saved us countless hours of screening.
-                We found creative design students who brought innovative ideas
-                to our brand refresh project."
+                {
+                  "The pre-vetting process saved us countless hours of screening. We found creative design students who brought innovative ideas to our brand refresh project."
+                }
               </p>
+
               <p className="mt-4 font-medium">
                 — Alex Rivera, Creative Director
               </p>

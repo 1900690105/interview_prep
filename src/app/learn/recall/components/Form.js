@@ -28,7 +28,7 @@ const CourseSelectionForm = ({
     if (topic) {
       setTopic(topic);
     }
-  }, []);
+  }, [searchparams]);
 
   const handleSubmit = async (e) => {
     setLoading(true);
@@ -149,7 +149,7 @@ const CourseSelectionForm = ({
               shadow-xl hover:shadow-2xl"
                 aria-label="Start learning with entered topic"
               >
-                <span>Let's Start</span>
+                <span>Let&apos;s Start</span>
                 <ChevronRight
                   className="transition-transform group-hover:translate-x-1"
                   size={20}

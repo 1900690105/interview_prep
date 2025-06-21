@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 const QuizPage = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -11,6 +11,10 @@ const QuizPage = () => {
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
   const [studentCount, setStudentCount] = useState(127); // Mock data
   const [myRank, setMyRank] = useState(14); // Mock data
+  // Track user answers for review
+  const [userAnswers, setUserAnswers] = useState(
+    Array(questions.length).fill(null)
+  );
 
   const questions = [
     {
@@ -121,6 +125,32 @@ const QuizPage = () => {
       .padStart(2, "0")}`;
   };
 
+  // Memoized handleFinish function to prevent unnecessary re-renders
+  const handleFinish = useCallback(() => {
+    // Check final answer if not already checked
+    if (!showDescription && selectedAnswer === currentQuestion.correct_answer) {
+      setScore((prevScore) => prevScore + 1);
+    }
+
+    // Save the last answer if not already saved
+    if (selectedAnswer && !showDescription) {
+      setUserAnswers((prevAnswers) => {
+        const newUserAnswers = [...prevAnswers];
+        newUserAnswers[currentQuestionIndex] = selectedAnswer;
+        return newUserAnswers;
+      });
+    }
+
+    setShowResult(true);
+    // Scroll to top of results
+    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
+  }, [
+    showDescription,
+    selectedAnswer,
+    currentQuestion.correct_answer,
+    currentQuestionIndex,
+  ]);
+
   // Timer effect
   useEffect(() => {
     if (timeLeft > 0 && !showResult) {
@@ -132,7 +162,7 @@ const QuizPage = () => {
       // Auto-submit when timer reaches zero
       handleFinish();
     }
-  }, [timeLeft, showResult]);
+  }, [timeLeft, showResult, handleFinish]);
 
   // Mock rank update (would be replaced with real API call in production)
   useEffect(() => {
@@ -166,9 +196,11 @@ const QuizPage = () => {
     }
 
     // Save user's answer for this question
-    const newUserAnswers = [...userAnswers];
-    newUserAnswers[currentQuestionIndex] = selectedAnswer;
-    setUserAnswers(newUserAnswers);
+    setUserAnswers((prevAnswers) => {
+      const newUserAnswers = [...prevAnswers];
+      newUserAnswers[currentQuestionIndex] = selectedAnswer;
+      return newUserAnswers;
+    });
 
     if (showDescription) {
       // If showing description, move to next question
@@ -187,29 +219,6 @@ const QuizPage = () => {
       setShowDescription(true);
     }
   };
-
-  const handleFinish = () => {
-    // Check final answer if not already checked
-    if (!showDescription && selectedAnswer === currentQuestion.correct_answer) {
-      setScore(score + 1);
-    }
-
-    // Save the last answer if not already saved
-    if (selectedAnswer && !showDescription) {
-      const newUserAnswers = [...userAnswers];
-      newUserAnswers[currentQuestionIndex] = selectedAnswer;
-      setUserAnswers(newUserAnswers);
-    }
-
-    setShowResult(true);
-    // Scroll to top of results
-    setTimeout(() => window.scrollTo({ top: 0, behavior: "smooth" }), 100);
-  };
-
-  // Track user answers for review
-  const [userAnswers, setUserAnswers] = useState(
-    Array(questions.length).fill(null)
-  );
 
   const handleRestart = () => {
     setCurrentQuestionIndex(0);
@@ -461,7 +470,7 @@ const QuizPage = () => {
                       <div className="flex items-center mb-2">
                         <div
                           className={`w-6 h-6 rounded-full flex items-center justify-center mr-3 ${
-                            q.options.includes(q.correct_answer)
+                            userAnswers[idx] === q.correct_answer
                               ? "bg-green-500 text-white"
                               : "bg-red-500 text-white"
                           }`}

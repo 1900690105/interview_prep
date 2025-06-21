@@ -303,9 +303,10 @@ const CreateCourse = () => {
                     <div className="px-6 pb-4">
                       <div className="bg-gray-50 rounded-lg p-3">
                         <h4 className="text-sm font-medium text-gray-700 mb-2 flex items-center gap-1">
-                          <Award size={14} aria-hidden="true" /> What you'll
+                          <Award size={14} aria-hidden="true" /> What you&#39;ll
                           learn:
                         </h4>
+
                         <ul className="space-y-1">
                           {course.content.chapters.map((chapter, idx) => (
                             <li

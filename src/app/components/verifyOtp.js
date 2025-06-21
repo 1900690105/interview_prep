@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -10,7 +10,7 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
   const [countdown, setCountdown] = useState(60);
   const [canResend, setCanResend] = useState(false);
   const [success, setSuccess] = useState(false);
-  
+
   const inputRefs = useRef([]);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
     e.preventDefault();
     const pastedText = e.clipboardData.getData("text");
     const pastedNumbers = pastedText.replace(/\D/g, "").slice(0, 6);
-    
+
     if (pastedNumbers.length === 6) {
       const newOTP = pastedNumbers.split("");
       setOtp(newOTP);
@@ -97,7 +97,7 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
 
   const handleResendOTP = async () => {
     if (!canResend) return;
-    
+
     setCanResend(false);
     setCountdown(60);
     setError("");
@@ -112,8 +112,9 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
             Verify Your Email
           </h2>
           <p className="text-gray-600 mb-2">
-            We've sent a verification code to
+            We&#39;ve sent a verification code to
           </p>
+
           <p className="font-medium text-gray-900 mb-4">{email}</p>
         </div>
 
@@ -153,7 +154,7 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
 
           <button
             type="submit"
-            disabled={loading || otp.some(digit => !digit) || success}
+            disabled={loading || otp.some((digit) => !digit) || success}
             className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors"
           >
             {loading ? (
@@ -168,17 +169,16 @@ const VerifyOTP = ({ email, onVerificationSuccess, onResendOTP }) => {
 
           <div className="text-center space-y-2">
             <p className="text-sm text-gray-600">
-              Didn't receive the code?
+              Didn&#39;t receive the code?
             </p>
+
             <button
               type="button"
               onClick={handleResendOTP}
               disabled={!canResend}
               className="text-blue-600 hover:text-blue-800 text-sm font-medium disabled:opacity-50 transition-colors"
             >
-              {canResend
-                ? "Resend Code"
-                : `Resend code in ${countdown}s`}
+              {canResend ? "Resend Code" : `Resend code in ${countdown}s`}
             </button>
           </div>
         </form>

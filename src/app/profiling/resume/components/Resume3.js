@@ -45,7 +45,7 @@ export default function Resume3() {
                 Relevant Coursework: Data Structures, Algorithms, Database
                 Management, Web Development
               </li>
-              <li>Dean's List: Fall 2022, Spring 2023</li>
+              <li>Dean&apos;s List: Fall 2022, Spring 2023</li>
             </ul>
           </div>
         </div>
@@ -68,7 +68,7 @@ export default function Resume3() {
               </li>
               <li>
                 Collaborated with the design team to improve UI/UX of the
-                company's main product.
+                company&apos;s main product.
               </li>
               <li>
                 Assisted in testing and debugging web applications to ensure

@@ -15,7 +15,7 @@ function Login() {
     if (session?.user) {
       router.push("/profilepage");
     }
-  }, [session]);
+  }, [session, router]);
   return (
     <div className="flex flex-col justify-center items-center mt=[30%] gap-10">
       {/* <button type="buttton" onClick={()=>signIn("google")} className="text-white bg-indigo-500 border-0 py-2  px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg flex justify-between gap-4"><span className='mt-1'><IoLogoGoogle /></span>sign up with google</button> */}

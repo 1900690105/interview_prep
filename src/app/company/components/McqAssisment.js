@@ -384,7 +384,7 @@ const McqAssessment = () => {
       currentSectionRef.current.focus();
       setLiveRegionMessage(`Navigated to ${currentSection.skill} section.`);
     }
-  }, [activeSectionIndex, showResults]); // Re-run when activeSectionIndex or showResults changes
+  }, [activeSectionIndex, showResults, currentSection.skill]); // Re-run when activeSectionIndex or showResults changes
 
   return (
     <div

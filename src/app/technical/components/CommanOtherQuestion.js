@@ -141,7 +141,7 @@ function InterviewGuide() {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-              Do you have a question that isn't listed here?
+              Do you have a question that isn&apos;t listed here?
             </Button>
           </DialogTrigger>
 

@@ -307,7 +307,7 @@ const LoginPage = () => {
 
           {/* Sign Up Link */}
           <p className="mt-8 text-center text-sm text-gray-600">
-            Don't have an account?{" "}
+            Don&#39;t have an account?{" "}
             <Link
               href="#signup"
               className="font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline transition-colors duration-200"

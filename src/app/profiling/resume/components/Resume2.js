@@ -72,7 +72,8 @@ const Resume2 = () => {
               Integrated OpenWeatherMap API to fetch real-time weather data
             </li>
             <li>
-              Implemented geolocation to automatically detect user's location
+              Implemented geolocation to automatically detect user&apos;s
+              location
             </li>
           </ul>
         </div>

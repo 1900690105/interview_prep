@@ -1,6 +1,3 @@
-// This is the Companies homepage component for a hiring platform
-// File: app/companies/page.jsx
-
 "use client";
 
 import { useState } from "react";
@@ -15,62 +12,20 @@ import {
   Building,
   GraduationCap,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function CompaniesHomePage() {
   const [email, setEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle the submission logic here
+
     alert(`Request demo submitted with: ${email}`);
     setEmail("");
   };
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Navigation */}
-      {/* <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex">
-              <div className="flex-shrink-0 flex items-center">
-                <span className="text-2xl font-bold text-blue-600">
-                  TalentBridge
-                </span>
-              </div>
-              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                <a
-                  href="#"
-                  className="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  For Companies
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  For Students
-                </a>
-                <a
-                  href="#"
-                  className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                >
-                  About Us
-                </a>
-              </div>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
-              <button className="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-500">
-                Sign In
-              </button>
-              <button className="ml-3 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-500">
-                Get Started
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav> */}
-
       {/* Hero Section */}
       <div className="bg-blue-50">
         <div className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 lg:py-24 flex flex-col lg:flex-row items-center">
@@ -103,7 +58,7 @@ export default function CompaniesHomePage() {
             </div>
           </div>
           <div className="lg:w-1/2 mt-10 lg:mt-0">
-            <img
+            <Image
               className="w-full rounded-lg shadow-xl"
               src="/hiring.png"
               alt="Hiring platform illustration"
@@ -229,8 +184,8 @@ export default function CompaniesHomePage() {
                   Post your opportunities
                 </h3>
                 <p className="mt-2 text-base text-gray-500">
-                  Specify the roles, skills, and qualifications you're looking
-                  for.
+                  Specify the roles, skills, and qualifications you&#39;re
+                  looking for.
                 </p>
               </div>
 
@@ -293,10 +248,11 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "TalentBridge helped us find exceptional student developers who
-                brought fresh perspectives to our projects. The quality of
-                candidates exceeded our expectations."
+                &quot;TalentBridge helped us find exceptional student developers
+                who brought fresh perspectives to our projects. The quality of
+                candidates exceeded our expectations.&quot;
               </p>
+
               <p className="mt-4 font-medium">— Sarah Johnson, HR Director</p>
             </div>
 
@@ -319,10 +275,11 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "As a fast-growing startup, we needed talent quickly. The
-                platform's matching algorithm connected us with perfect-fit
-                interns who hit the ground running."
+                &quot;As a fast-growing startup, we needed talent quickly. The
+                platform&#39;s matching algorithm connected us with perfect-fit
+                interns who hit the ground running.&quot;
               </p>
+
               <p className="mt-4 font-medium">— Michael Chen, Founder</p>
             </div>
 
@@ -345,9 +302,9 @@ export default function CompaniesHomePage() {
                 </div>
               </div>
               <p className="text-gray-600">
-                "The pre-vetting process saved us countless hours of screening.
-                We found creative design students who brought innovative ideas
-                to our brand refresh project."
+                &quot;The pre-vetting process saved us countless hours of
+                screening. We found creative design students who brought
+                innovative ideas to our brand refresh project.&quot;
               </p>
               <p className="mt-4 font-medium">
                 — Alex Rivera, Creative Director

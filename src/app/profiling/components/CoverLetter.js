@@ -59,14 +59,15 @@ const CoverLetter = ({ setLetter }) => {
               <p className="text-justify mt-2">
                 A cover letter is a one-page document you send with your resume
                 that provides additional information about skills and
-                experiences related to the job you're pursuing. It typically
-                includes three to four short paragraphs. A cover letter is
-                important because it serves as the first chance for the
-                recruiter to see the qualifications that make you a good fit for
-                the position. Not every job application requires a cover letter,
-                but it's a good idea to submit one. The extra effort not only
-                shows the employer that you're serious about the job, but the
-                letter differentiates you from other candidates.
+                experiences related to the job you&apos;re pursuing. It
+                typically includes three to four short paragraphs. A cover
+                letter is important because it serves as the first chance for
+                the recruiter to see the qualifications that make you a good fit
+                for the position. Not every job application requires a cover
+                letter, but it&apos;s a good idea to submit one. The extra
+                effort not only shows the employer that you&apos;re serious
+                about the job, but the letter differentiates you from other
+                candidates.
               </p>
             </div>
             <div className="mt-4">

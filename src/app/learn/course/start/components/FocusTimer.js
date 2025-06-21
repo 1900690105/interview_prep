@@ -1,10 +1,26 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function FocusTimer() {
-  const [timeLeft, setTimeLeft] = useState(10 * 60); // 1 min timer for testing
+  const [timeLeft, setTimeLeft] = useState(10 * 60); // 10-min timer
   const [isBreak, setIsBreak] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+
+  const handleTimerEnd = useCallback((wasBreak) => {
+    if (!wasBreak) {
+      setIsBreak(true);
+      setIsLocked(true);
+      setTimeLeft(10); // 10-second break
+    } else {
+      setIsBreak(false);
+      setIsLocked(false);
+      setTimeLeft(10 * 60); // Restart focus timer
+    }
+    localStorage.setItem("focus-timer-timeLeft", wasBreak ? 600 : 10);
+    localStorage.setItem("focus-timer-isBreak", !wasBreak);
+    localStorage.setItem("focus-timer-isLocked", !wasBreak);
+    localStorage.setItem("focus-timer-startTime", Date.now());
+  }, []);
 
   useEffect(() => {
     const savedTime = localStorage.getItem("focus-timer-timeLeft");
@@ -30,7 +46,7 @@ export default function FocusTimer() {
       localStorage.setItem("focus-timer-startTime", Date.now());
       localStorage.setItem("focus-timer-timeLeft", timeLeft);
     }
-  }, []);
+  }, [handleTimerEnd, timeLeft]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -47,23 +63,7 @@ export default function FocusTimer() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft]);
-
-  const handleTimerEnd = (wasBreak) => {
-    if (!wasBreak) {
-      setIsBreak(true);
-      setIsLocked(true);
-      setTimeLeft(10); // 10-sec break
-    } else {
-      setIsBreak(false);
-      setIsLocked(false);
-      setTimeLeft(10 * 60); // Restart 1 min timer
-    }
-    localStorage.setItem("focus-timer-timeLeft", timeLeft);
-    localStorage.setItem("focus-timer-isBreak", isBreak);
-    localStorage.setItem("focus-timer-isLocked", isLocked);
-    localStorage.setItem("focus-timer-startTime", Date.now());
-  };
+  }, [timeLeft, isBreak, handleTimerEnd]);
 
   return (
     <div className="relative">
@@ -77,13 +77,7 @@ export default function FocusTimer() {
       )}
 
       <div className="fixed lg:bottom-28 bottom-[104px] right-7 w-17 h-17 sm:w-17 sm:h-17 rounded-full overflow-hidden border-2 border-white shadow-lg">
-        {/* <Image
-          src="/images.webp"
-          alt="Logo"
-          width={100}
-          height={100}
-          className="w-full h-full object-cover"
-        /> */}
+        {/* You can place a logo or image here if needed */}
       </div>
     </div>
   );

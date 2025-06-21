@@ -70,8 +70,8 @@ export default function Custom404() {
             Oops! Page not found
           </h2>
           <p className="text-gray-300 text-lg md:text-xl max-w-md mx-auto">
-            The page you're looking for seems to have vanished into the digital
-            void.
+            The page you&apos;re looking for seems to have vanished into the
+            digital void.
           </p>
         </section>
 

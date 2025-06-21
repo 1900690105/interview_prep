@@ -149,7 +149,7 @@ function CodingRoundFeedback({ feedback }) {
       >
         <CheckCircle className="h-6 w-6 text-green-600" aria-hidden="true" />
         <p className="text-green-700 font-medium">
-          Keep practicing! You're on the right track!
+          Keep practicing! You&apos;re on the right track!
         </p>
       </section>
     </div>

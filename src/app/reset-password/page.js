@@ -1,10 +1,9 @@
-// app/reset-password/page.js
 "use client";
 
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 
-export default function ResetPasswordPage() {
+function ResetForm() {
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const email = searchParams.get("email");
@@ -95,5 +94,13 @@ export default function ResetPasswordPage() {
         </form>
       )}
     </div>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<div className="text-center mt-8">Loading...</div>}>
+      <ResetForm />
+    </Suspense>
   );
 }

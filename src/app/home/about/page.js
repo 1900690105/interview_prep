@@ -82,13 +82,13 @@ export default function AboutUs() {
       icon: <Users className="w-8 h-8 text-indigo-600" />,
       title: "Student-Centered",
       description:
-        "We put students' needs and goals at the center of everything we do.",
+        "We put students&apos; needs and goals at the center of everything we do.",
     },
     {
       icon: <Heart className="w-8 h-8 text-indigo-600" />,
       title: "Inclusivity",
       description:
-        "We're committed to making career opportunities accessible to all students.",
+        "We&apos;re committed to making career opportunities accessible to all students.",
     },
     {
       icon: <Target className="w-8 h-8 text-indigo-600" />,
@@ -138,8 +138,8 @@ export default function AboutUs() {
               About CareerLaunch
             </h1>
             <p className="text-xl md:text-2xl text-indigo-100">
-              We're on a mission to transform how students discover, prepare
-              for, and launch their ideal careers.
+              We&apos;re on a mission to transform how students discover,
+              prepare for, and launch their ideal careers.
             </p>
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function AboutUs() {
                   path from education to meaningful employment.
                 </p>
                 <p className="text-gray-600 mb-6">
-                  We're dedicated to empowering students with the tools,
+                  We&apos;re dedicated to empowering students with the tools,
                   resources, and connections they need to discover their
                   professional passions, develop industry-relevant skills, and
                   launch rewarding careers aligned with their unique talents and
@@ -190,7 +190,7 @@ export default function AboutUs() {
                 </p>
                 <p className="text-gray-600">
                   By building bridges between educational institutions and
-                  employers, we're creating an ecosystem where students can
+                  employers, we&apos;re creating an ecosystem where students can
                   seamlessly transition from learning to earning, and where
                   employers can find talented, well-prepared graduates ready to
                   contribute from day one.
@@ -215,17 +215,17 @@ export default function AboutUs() {
                 </h2>
                 <p className="text-xl text-gray-600 mb-6 leading-relaxed">
                   We envision a world where no student graduates wondering
-                  "what's next?"
+                  &ldquo;what&apos;s next?&rdquo;
                 </p>
                 <p className="text-gray-600 mb-6">
-                  We're working toward a future where the transition from
+                  We&apos;re working toward a future where the transition from
                   education to employment is transparent, accessible, and
                   efficient for students of all backgrounds. We see a world
                   where talent is distributed equally, and opportunity is too.
                 </p>
                 <p className="text-gray-600">
                   Through technology, personalization, and human connection,
-                  we're creating pathways to successful careers for every
+                  we&apos;re creating pathways to successful careers for every
                   student, regardless of their starting point.
                 </p>
               </div>
@@ -279,9 +279,9 @@ export default function AboutUs() {
                 Meet Our Team
               </h2>
               <p className="text-xl text-gray-600">
-                We're a diverse group of educators, technologists, and industry
-                experts passionate about connecting students with rewarding
-                careers.
+                We&apos;re a diverse group of educators, technologists, and
+                industry experts passionate about connecting students with
+                rewarding careers.
               </p>
             </div>
 
@@ -331,7 +331,7 @@ export default function AboutUs() {
               </h3>
               <p className="text-gray-600 max-w-2xl mx-auto mb-6">
                 Passionate about helping students launch successful careers?
-                We're always looking for talented individuals to join our
+                We&apos;re always looking for talented individuals to join our
                 mission.
               </p>
               <a
@@ -443,9 +443,11 @@ export default function AboutUs() {
             <div className="bg-white rounded-lg shadow-sm p-8 border border-gray-200 mb-16">
               <div className="md:flex gap-8 items-center">
                 <div className="md:w-1/3 mb-6 md:mb-0">
-                  <img
+                  <Image
                     src="/dev.jpg"
                     alt="Nikhil Kandhare, Founder"
+                    width={300}
+                    height={300}
                     className="rounded-lg shadow w-full h-auto"
                   />
                 </div>
@@ -454,16 +456,17 @@ export default function AboutUs() {
                     A Personal Mission
                   </h3>
                   <p className="text-gray-600 mb-4">
-                    CareerLaunch began with our founder Nikhil Kandhare's
+                    CareerLaunch began with our founder Nikhil Kandhare&apos;s
                     personal experience navigating the challenging transition
                     from college to career. After witnessing too many talented
                     peers struggle to find meaningful work despite their
                     education, she became determined to create a better way.
                   </p>
                   <p className="text-gray-600 mb-4">
-                    "I saw the disconnect between what students were learning
-                    and what employers were seeking. The talent was there, but
-                    the pathways weren't clear," Nikhil explains.
+                    &ldquo;I saw the disconnect between what students were
+                    learning and what employers were seeking. The talent was
+                    there, but the pathways weren&apos;t clear,&rdquo; Nikhil
+                    explains.
                   </p>
                   <p className="text-gray-600">
                     With a background in both education and HR technology,
@@ -542,10 +545,12 @@ export default function AboutUs() {
                     key={index}
                     className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex items-center justify-center h-24"
                   >
-                    <img
+                    <Image
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full"
+                      width={150}
+                      height={60}
+                      className="max-w-full max-h-full object-contain"
                     />
                   </div>
                 ))}
@@ -563,10 +568,12 @@ export default function AboutUs() {
                     key={index}
                     className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 flex items-center justify-center h-24"
                   >
-                    <img
+                    <Image
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full"
+                      width={150}
+                      height={60}
+                      className="max-w-full max-h-full object-contain"
                     />
                   </div>
                 ))}
