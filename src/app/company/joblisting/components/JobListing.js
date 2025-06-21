@@ -1,4 +1,6 @@
 // components/JobListing.js
+"use client";
+
 import { useState, useEffect } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import JobCard from "./JobCard";

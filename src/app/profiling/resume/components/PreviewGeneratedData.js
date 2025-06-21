@@ -1,3 +1,5 @@
+"use client";
+
 import Resume from "./Resume";
 import Resume6 from "./Resume6";
 

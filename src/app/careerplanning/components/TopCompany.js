@@ -1,3 +1,4 @@
+"use client";
 import { DataCompany } from "@/app/data/Topcompany";
 import React, { useState } from "react";
 

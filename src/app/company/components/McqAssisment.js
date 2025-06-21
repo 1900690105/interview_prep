@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 // Assuming lucide-react icons are available if needed, though not strictly used in core logic for this component.
 

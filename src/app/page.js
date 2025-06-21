@@ -3,11 +3,9 @@ import { useState } from "react";
 import HowWork from "./home/components/HowWork";
 import CareerResources from "./home/components/Resourse";
 import FeatureSection from "./home/components/Feature";
-import HeroSeection from "./components/HeroSeection";
 import PowerCareerPath from "./components/PowerCareerPath";
 import HeroSection from "./home/components/HeroSection";
 import Footer from "./home/components/Footer";
-import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {

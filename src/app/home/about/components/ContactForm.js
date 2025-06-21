@@ -1,3 +1,5 @@
+"use client";
+
 import { Building, Mail } from "lucide-react";
 import React from "react";
 

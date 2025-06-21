@@ -1,4 +1,6 @@
 // generate feedback here
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import {
   Clock,

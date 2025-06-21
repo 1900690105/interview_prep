@@ -185,5 +185,5 @@ Include skill, skill level, Evaluation Criteria, description, feedback, strength
     </>
   );
 }
-
+export const dynamic = "force-dynamic"; // disables prerendering
 export default InterviewPracticeComponent;

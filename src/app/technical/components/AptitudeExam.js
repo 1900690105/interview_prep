@@ -1,4 +1,5 @@
 // completed but i will make it change
+"use client";
 import React, { useState, useEffect, useRef } from "react";
 import {
   Timer,

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Check, Pencil, Eye } from "lucide-react";
 import { FaWpforms } from "react-icons/fa";

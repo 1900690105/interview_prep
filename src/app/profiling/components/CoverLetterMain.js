@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import CoverLetter from "../../profiling/components/CoverLetter";
 import CoverLetterFront from "../../profiling/components/CoverLetterFront";

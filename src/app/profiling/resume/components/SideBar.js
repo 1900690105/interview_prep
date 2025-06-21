@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 function SideBar({ sections, activeSection, setActiveSection }) {

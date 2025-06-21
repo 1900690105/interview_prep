@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Search, BookOpen, Filter } from "lucide-react";
 import { DataCompetitiveExams } from "@/app/data/CompititiveExam";

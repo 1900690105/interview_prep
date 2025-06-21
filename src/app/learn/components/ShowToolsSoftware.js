@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { Search, Laptop, Grid3X3, List } from "lucide-react";
 import {

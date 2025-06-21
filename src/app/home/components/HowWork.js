@@ -1,3 +1,5 @@
+"use client";
+
 import { Award, BookOpen, Briefcase } from "lucide-react";
 import React from "react";
 
